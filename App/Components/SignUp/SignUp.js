@@ -80,7 +80,7 @@ class SignUp extends Component {
           onChangeText={(val) => this.setState({ passwordConf: val })}
           autoCapitalize={"none"}
         />
-        <PrimaryButton text="Submit" onPress={this.createUser} />
+        <PrimaryButton text="Submit" onPress={this.props.onPressSubmit} />
         <TouchableOpacity style={styles.signup} onPress={this.props.onPressHaveAcc}>
           <Text style={styles.signupText}>Already have an account? Log In</Text>
         </TouchableOpacity>

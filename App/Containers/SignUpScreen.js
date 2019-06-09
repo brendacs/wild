@@ -6,6 +6,7 @@ class SignUpScreen extends Component {
     return (
       <SignUp
         onPressHaveAcc={() => this.props.navigation.navigate('LoginScreen')}
+        onPressSubmit={() => this.props.navigation.navigate('MapScreen')}
       />
     );
   }
