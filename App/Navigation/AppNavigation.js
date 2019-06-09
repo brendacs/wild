@@ -7,7 +7,10 @@ import AppIntro from '../Components/AppIntro/AppIntro';
 const AppNavigator = createStackNavigator(
   {
     IntroScreen: {
-      screen: AppIntro
+      screen: AppIntro,
+      navigationOptions: {
+        header: null,
+      }
     },
     LoginScreen: {
       screen: LoginScreen
@@ -20,7 +23,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'LoginScreen'
+    initialRouteName: 'IntroScreen'
   }
 );
 

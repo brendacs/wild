@@ -4,7 +4,9 @@ import SignUp from '../Components/SignUp/SignUp';
 class SignUpScreen extends Component {
   render() {
     return (
-      <SignUp />
+      <SignUp
+        onPressHaveAcc={() => this.props.navigation.navigate('LoginScreen')}
+      />
     );
   }
 }

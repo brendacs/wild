@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Field from '../Field/Field';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
@@ -79,6 +79,9 @@ class SignUp extends Component {
           autoCapitalize={"none"}
         />
         <PrimaryButton text="Submit" onPress={this.createUser} />
+        <TouchableOpacity style={styles.signup} onPress={this.props.onPressHaveAcc}>
+          <Text style={styles.signupText}>Already have an account? Log In</Text>
+        </TouchableOpacity>
       </View>
     );
   }
