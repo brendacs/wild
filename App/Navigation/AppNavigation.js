@@ -13,13 +13,16 @@ const AppNavigator = createStackNavigator(
       }
     },
     LoginScreen: {
-      screen: LoginScreen
+      screen: LoginScreen,
     },
     SignUpScreen: {
-      screen: SignUpScreen
+      screen: SignUpScreen,
     },
     MapScreen: {
-      screen: MapScreen
+      screen: MapScreen,
+      navigationOptions: {
+        header: null,
+      }
     }
   },
   {
