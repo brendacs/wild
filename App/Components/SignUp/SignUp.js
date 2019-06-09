@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Field from '../Field/Field';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import getContentLength from '../Utils';
+import getContentLength from '../Utils/Utils';
 
 class SignUp extends Component {
   constructor() {
