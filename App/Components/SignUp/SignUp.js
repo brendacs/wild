@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Field from '../Field/Field';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import getContentLength from '../Utils';
 
 class SignUp extends Component {
   constructor() {
@@ -22,18 +23,19 @@ class SignUp extends Component {
     if (this.state.password !== this.state.passwordConf) {
       return;
     }
-    fetch('http://localhost:3000/users/new', {
+    const payload = JSON.stringify({
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    });
+    fetch('http://localhost:8000/user', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'Content-Length': getContentLength(payload),
       },
-      body: JSON.stringify({
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password
-      }),
+      body: payload,
     })
     .then((res) => {
       return res.json();
