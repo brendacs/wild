@@ -12,6 +12,12 @@ class Login extends Component {
         <Field placeholder="Username" />
         <Field placeholder="Password" />
         <PrimaryButton text="Log In" onPress={this.props.onPressLogIn} />
+        <TextField
+          {...props}
+          error={this.state.error}
+          errorColor={'red'}
+          onFocus={() => this.setState({error: ''})}
+        />
         <TouchableOpacity style={styles.signup} onPress={this.props.onPressSignUp}>
           <Text style={styles.signupText}>Need an account? Sign Up</Text>
         </TouchableOpacity>
