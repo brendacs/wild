@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import MapContainer from '../Components/MapContainer/MapContainer';
+// import console = require('console');
+
+// declare module "console" {
+//   export = console;
+// }
 
 class MapScreen extends Component {
   constructor() {
@@ -10,7 +15,7 @@ class MapScreen extends Component {
       data: null,
       error: null,
       pins: null,
-      location: null,
+      currLoc: null,
     }
   }
 
@@ -21,7 +26,7 @@ class MapScreen extends Component {
       Geolocation.getCurrentPosition(
         (position) => {
           console.log(position);
-          this.setState({ location: position });
+          this.setState({ currLoc: position });
         },
         (error) => {
           // See error code charts below.
@@ -32,31 +37,45 @@ class MapScreen extends Component {
     }
   }
 
-  createPins = () => {
-    if (this.state.password !== this.state.passwordConf) {
-      return;
-    }
-    fetch('http://localhost:8000/api/park', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then((res) => {
-      return res.json();
-    })
-    .then(data => {
-      this.setState({ data: data });
-    })
-    .catch((err) => {
-      this.setState({ error: err });
-    });
+  getContentLength = (s) => {
+    return encodeURI(s).split(/%..|./).length - 1;
   }
+
+  // componentDidMount() {
+  //   if (this.state.password !== this.state.passwordConf) {
+  //     return;
+  //   }
+  //   fetch('http://localhost:8000/api/park', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //       'Content-Length': this.getContentLength(JSON.stringify({
+  //         latitude: 37.787513,
+  //         longitude: -122.396286,
+  //         parkId: "Yosemite"
+  //       }))
+  //     },
+  //     body: JSON.stringify({
+  //       latitude: 37.787513,
+  //       longitude: -122.396286,
+  //       parkId: "Yosemite"
+  //     })
+  //   })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then(data => {
+  //     this.setState({ data: data });
+  //   })
+  //   .catch((err) => {
+  //     this.setState({ error: err });
+  //   });
+  // }
 
   render() {
     return (
-      <MapContainer />
+      <MapContainer currLoc={this.state.currLoc} data={this.state.data} />
     );
   }
 }
